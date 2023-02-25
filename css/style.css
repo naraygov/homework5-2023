@@ -1,51 +1,41 @@
-/* The following specifications are for the default view:
-Animate the logo with keyframes.  (Here is a keyframes reference.) It should start at a width of 25px and grow to 475px.  It should also start with an opacity of 0 and end with an opacity of 1. The animation should take 5 seconds and only happen when the page is loaded. **You can complete this step later in the process - it won’t affect the larger views.  */
-
+/* Step 1. Animation for logo - want it to start with width 25px and 0 opacity and end with 475px width and 1 opacity */
 @keyframes logo {
     from {width: 25px; opacity:0;}
     to {width: 475px; opacity:1;}
 }
-  
+
+/* Step 1, cont. - apply animation to logo image (has id logo) */
 #logo {
     animation-name: logo;
     animation-duration: 5s;
 }
 
-/* Edit the body element to use the Poppins font (using Google fonts) with serif as a backup.  It should also use the image “concrete_seamless.png” as a background-image with a backup color of #f1f1f1. */
-
+/* Step 2 - body has font Poppins with serif as a backup, background image is set to the given image in images folder, color set as a backup */
 body {
     background-image: url('../images/concrete_seamless.png');
     background-color: #f1f1f1;
     font-family: 'Poppins', serif;
 }
- 
-/* Observe the image of the page at 720px.  */
 
-/* Edit the css for the header tag (all instances) to use flex to match our example. */
+/* Step 3 - default header rules - flex direction is vertical and everything within is centered*/
 header {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* Edit the css for the nav_links class to use flex to match our example. Do not modify the list items or the links - modify the nav_links class to use flex.  */
+/* Step 4 - in default view, nav links are stacked vertically */
 .nav_links {
     display: flex;
     flex-direction: column;
 }
 
-/* Style the links so that they have the same color even after they have been visited. This is a “challenge” problem. You should not give or receive help when completing it. */
-
+/* Step 5 - visited link set to same color as before visiting (default blue) */
 li a:visited{
     color: blue;
 }
 
-/* Identify the proper selector to style ONLY those header elements that are direct children of a card class.  The required styling is the following: 
-background: #288088,
-solid 2px border using #45ADAD,
-20px of padding on the top and the bottom, 
-50px border-radius on the top left and right corners.  */
-
+/* Step 6 - styling for headers within child class */
 .card > header {
     background: #288088;
     border-style: solid;
@@ -55,37 +45,29 @@ solid 2px border using #45ADAD,
     padding-bottom: 20px;
 }
 
+/* Step 6, cont. - rounding upper borders of card & header to match given picture */
 .card > header, .card {
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
 }
 
-/* Check your work. The corners probably aren’t curving quite as you expected. Use Inspect Element to fix this problem. You will need to utilize a second selector. */
-
-
-
-/* Steps 7 and 8 go together.  You won’t have the right “look” until you finish both. */
-
-/* Edit the css for the card class to match our example. Achieve this by using a flex-property to specify an initial “size” of 450px.  You need to think about this from a “flex” perspective and realize that flex-direction will affect the size of the elements.  You can see that in the mobile view they all have the same width.  */
-
+/* Step 7 - card class given initial size (flex-basis) of 450px, everything within stacked vertically */
 .card {
     display:flex;
     flex-basis: 450px;
     flex-direction: column;
 }
 
-/* Edit the css for the pricing class to match our example. You should use flex and the cards should be centered both horizontally and vertically. */
-
+/* Step 8 - pricing class aligned horizontally and vertically, default mode - stack contents inside vertically*/
 .pricing {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    align-content: center;
     justify-content: center;
+    align-content: center;
 }
 
-/* Style the images in the gallery class. These elements will have a solid 10px border with a color of #50C7C7, 10px margin on all four sides and a width of 300px.   */
-
+/* Step 9 - gallery image styling - border, margin, width specifications */
 .gallery img {
     border: 10px;
     border-style: solid;
@@ -94,134 +76,101 @@ solid 2px border using #45ADAD,
     width: 300px;
 }
 
-/* Edit the css for the gallery class to use flex to match our example. (You may want to look at the screen shots from 1200px and 1500px as well -  the changes are not from media queries, but from the use of flex.) */
-
+/* Step 10 - want gallery to stay center-justified in all cases */
 .gallery {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-/* The following specifications are for when the screen-size is greater than 900px
-Observe the screenshot from from 1200px */
-
+/* Media query set for screens wider than 900px (non-default specifications from here) */
 @media screen and (min-width: 900px) {
+
+    /* Step 11 - headers are now horizontally oriented */
     header {
-        display: flex;
         flex-direction: row;
         justify-content: space-between;
     }
 
+    /* Step 11, cont. - nav links are now horizontally aligned */
     .nav_links {
-        display: flex;
         flex-direction: row;
     }
 
+    /* Step 12 - pricing is now horizontally aligned and middle-aligned*/
     .pricing {
-        display: flex;
         flex-direction: row;
         align-items: center;
     }
 
+    /* Step 12, cont. - cards given new initial size */
     .card {
-        display: flex;
         flex-basis: 275px;
     }
 
+    /* Step 13 - first header (occurs before main) sticks at the top of the screen  */
     body > header {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
         top: 0;
         position: sticky;
     }
 }
 
+/* Step 14 - media query set for user preferring reduced motion - turn off logo animation */
 @media screen and (prefers-reduced-motion: reduce){
     #logo{
         animation:none;
     }
-  }
+}
 
+/* Set media query for print mode */
 @media print {
+
+    /* Step 15, 16 - body font set to Arial, Helvetica for backup - no background image in print mode*/
     body {
         font-family: Arial, Helvetica;
         background-image: none;
     }
 
+    /* Step 17 - make sure nav goes across the entire page to set up ensuing rule */
     nav {
         width: 100%;
     }
 
+    /* Step 17, cont. - nav links in print mode are horizontally aligned and evenly spaced out */
     .nav_links {
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
     }
 
+    /* Step 18 - pricing boxes are horizontal, all fit onto one "line", aligned at the bottom */
     .pricing {
-        display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
         align-items: flex-end;
     }
 
+    /* Step 19 - card border setting, initial size to 325px */
     .card {
         border-color: #45ADDD;
         border: 2px;
         border-style: solid;
-        display: flex;
-        flex-direction: column;
         flex-basis: 325px;
-        flex-wrap: nowrap;
     }
 
+    /* Step 20 - gallery images are not shown in print mode */
     .gallery{
         display:none;
     }
 
+    /* Step 20, cont - visibility to hidden means the space is taken up but no text saying "Gallery" - did this to match print output PDF */
     #gallery{
         visibility: hidden;
     }
 
-    .card li:nth-child(even)::after {
+    /* Step 21 - within the list in the cards, add a thumbs up emoji coming after the message in only the second element and none others. The content here is a string literal containing the thumbs up emoji */
+    .card li:nth-child(2)::after {
         content: "👍";
     }
 
 }
-
-
-
-/* Edit the css for the header tag (all instances) and the nav_links class to match our example using flex-properties. The logo should be as far to the left as possible and the links as far to the right as possible. Use flex properties, NOT position properties. */
-
-/* Edit the css for the pricing and card classes to match our example. Part of achieving this is by using a flex-property to specify a “size” of 275px. Notice that the elements do not have the same height, but do have the same width. */
-
-/* Modify the first header (the one not inside main) so that it remains visible at the top of the screen even as we scroll down. Make sure that it is always visible. You can see an example of this in the video and in the screenshot at 1200px when scrolled. This is a challenge problem. You should not give or receive help when completing it. */
-/* The following specifications are for when the user prefers reduced motion.   */
-/* The logo class should appear but not be animated if prefers-reduced-motion is selected in the accessibility preferences.  */
-
-/* The following specifications are for when the page is printed in portrait mode.  		 */
-/* View the print view from Firefox on regular sized paper in Portrait mode. */
-
-
-
-/* Change the font on your body to Arial with a backup value of  Helvetica */
-
-
-/* The background image should be removed.  */
-
-
-/* Edit the nav/nav_links elements so that they are spaced according to the image above. */
-
-
-/* Edit the pricing class so that the elements align along the bottom.  As long as it aligns along the bottom we don't care if the cards aren't the same height. */
-
-
-/* The card elements should have a solid border 2px of #45ADDD and use flex-basis of 325px.  */
-
-
-/* No part of the gallery should be visible. */
-
-
-/* Without using list-style-type add the thumbs up entity as shown in the cards. This is a challenge problem. You should not give or receive help when completing it.**For some people the thumbs up is not printing as yellow. That is fine. */
